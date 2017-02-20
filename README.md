@@ -1,5 +1,5 @@
 # ng2-auth-app
-Example how to create manage authentication using angular 2 in Single Page App
+Example how to manage user authentication using Angular 2 in single page app
 
 # install nodejs and npm
 It is required, follow  [this](https://nodejs.org/en/download/package-manager) guide.
@@ -14,7 +14,6 @@ npm install -g @angular/cli
 
 ```sh
 git clone https://github.com/tanbit-pl/ng2-auth-app.git
-cd ng2-auth-app
 ```
 
 ## install project dependencies using npm
