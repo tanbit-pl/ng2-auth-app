@@ -13,22 +13,8 @@ import {AuthGuard} from "./shared/auth.guard";
 import {AuthService} from "./shared/auth.service";
 import {routing} from "./app.routing";
 import {PublicComponent} from "./unprotected/public.component";
-import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
 import {RoutingService} from "./shared/routing.service";
 import {LoginComponent} from "./unprotected/login.component";
-
-export const firebaseConfig = {
-  apiKey: "AIzaSyAQDPKJSkS6lEY_QzStmEW8YL-NSsuCMPk",
-  authDomain: "ng-auth-app.firebaseapp.com",
-  databaseURL: "https://ng-auth-app.firebaseio.com",
-  storageBucket: "ng-auth-app.appspot.com",
-  messagingSenderId: "584590812607"
-};
-
-const firebaseAuthConfig = {
-  provider: AuthProviders.Password,
-  method: AuthMethods.Password,
-};
 
 @NgModule({
   declarations: [
@@ -43,7 +29,6 @@ const firebaseAuthConfig = {
   imports: [
     BrowserModule,
     MaterialModule,
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     ReactiveFormsModule,
     HttpModule,
     routing

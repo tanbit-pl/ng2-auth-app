@@ -11,8 +11,4 @@ export abstract class FormReactiveComponent implements OnInit {
   invalid(name: string): boolean {
     return AppValidators.invalid(this.form, name);
   }
-
-  invalidKey(name: string, error: string): boolean {
-    return AppValidators.invalidKey(this.form, name, error);
-  }
 }

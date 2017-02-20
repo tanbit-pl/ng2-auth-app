@@ -9,7 +9,7 @@ const APP_ROUTES: Routes = [
   {path: '', redirectTo: '/friends', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'public', component: PublicComponent},
-  {path: 'friends', component: FriendsComponent, canActivate: [AuthGuard]}
+  {path: 'friends', component: FriendsComponent}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

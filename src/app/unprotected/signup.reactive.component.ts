@@ -1,9 +1,8 @@
-import {Component} from "@angular/core";
-import {FormBuilder, Validators, FormControl} from "@angular/forms";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, Validators, FormControl, FormGroup} from "@angular/forms";
 
 import {AuthService} from "../shared/auth.service";
 import {AppValidators} from "../shared/app.validators";
-import {FormReactiveComponent} from "../shared/form.reactive.component";
 
 @Component({
   selector: 'sign-up-form',
@@ -29,11 +28,13 @@ import {FormReactiveComponent} from "../shared/form.reactive.component";
         </form>
     `
 })
-export class SignUpReactiveComponent extends FormReactiveComponent {
+export class SignUpReactiveComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
-    super();
-  }
+    protected form: FormGroup;
+
+    constructor(private fb: FormBuilder, private authService: AuthService) {
+
+    }
 
   ngOnInit(): any {
     this.form = this.fb.group({
@@ -56,11 +57,15 @@ export class SignUpReactiveComponent extends FormReactiveComponent {
     }
   }
 
-  confirmPasswordErrorMessage(): string {
-    if (this.form.controls['confirmPassword'].errors['passwordsNotMatch']) {
-      return 'passwords do not match';
-    } else {
-      return 'password is too short'
+    confirmPasswordErrorMessage(): string {
+        if (this.form.controls['confirmPassword'].errors['passwordsNotMatch']) {
+            return 'passwords do not match';
+        } else {
+            return 'password is too short'
+        }
     }
-  }
+
+    invalid(name: string): boolean {
+        return AppValidators.invalid(this.form, name);
+    }
 }

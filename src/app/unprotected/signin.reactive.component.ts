@@ -1,11 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {DomSanitizer} from "@angular/platform-browser";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {MdIconRegistry} from "@angular/material";
-
 import {AuthService} from "../shared/auth.service";
 import {AppValidators} from "../shared/app.validators";
-import {FormReactiveComponent} from "../shared/form.reactive.component";
 
 @Component({
   selector: 'sign-in-form',
@@ -27,10 +25,11 @@ import {FormReactiveComponent} from "../shared/form.reactive.component";
         </form>
     `
 })
-export class SignInReactiveComponent extends FormReactiveComponent {
+export class SignInReactiveComponent implements OnInit{
+
+  protected form: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService, sanitizer: DomSanitizer, iconRegistry: MdIconRegistry) {
-    super();
     iconRegistry.addSvgIcon('auth-google', sanitizer.bypassSecurityTrustResourceUrl('assets/auth_google.svg'));
   }
 
@@ -47,5 +46,9 @@ export class SignInReactiveComponent extends FormReactiveComponent {
 
   onSignInWithGoogleAccount() {
     this.authService.signInWithGoogleAccount();
+  }
+
+  invalid(name: string): boolean {
+    return AppValidators.invalid(this.form, name);
   }
 }
